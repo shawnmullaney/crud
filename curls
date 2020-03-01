@@ -1,0 +1,48 @@
+curl fora dding new miner:
+curl 'http://localhost/crud_v1/add.php' -H 'Cookie: PHPSESSID=g4ugbmd6hcte86lo72iain8prt' -H 'Origin: http://localhost' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: http://localhost/crud_v1/add.php' -H 'Connection: keep-alive' --data 'minerIp=kjh&macAddress=kjh&minerType=kjh&plocation=kjg&hashrate=jhg&Submit=Add' --compressed
+
+
+latest curl with all data points:
+curl 'http://zoomhash.us/add.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: http://zoomhash.us' -H 'Upgrade-Insecure-Requests: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: http://zoomhash.us/add.php' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' --data 'minerIp=XXX&macAddress=XXX&minerType=XXX&plocation=XXX&hashrate=XXX&maxTemp=XXX&farmName=XXX&numCards=XXX&uptime=XXX&poolUser=XXX&comments=XXX&Submit=Add' --compressed
+
+
+latest curl for update:
+curl 'http://zoomhash.us/edit.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: http://zoomhash.us' -H 'Upgrade-Insecure-Requests: 1' 
+-H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36' 
+-H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: http://zoomhash.us/edit.php?id=1' -H 'Accept-Encoding: gzip, deflate' 
+-H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' 
+
+
+--data 'minerIp=XXX&macAddress=XXX&minerType=XXX&plocation=XXX&hashrate=XXX&maxTemp=XXX&plocation=XXX&hashrate=XXX&maxTemp=XXX&comments=XXX&comments=XXX&id=1&update=Update' --compressed
+
+
+for server in 1 thru 1200 $(howmanyDBentries?),
+do get info, grab mac
+reverse mac to ip and echo "api" | ip 
+updateCurlWithOriginalMinerId
+
+
+mysql -u username -puserpass dbname -e "UPDATE mytable SET mycolumn = 'myvalue' WHERE id='myid'";
+
+
+curl 'http://zoomhash.us/edit.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: http://zoomhash.us' --data 'minerIp=XXX&macAddress=XXX&minerType=XXX&plocation=XXX&hashrate=XXX&maxTemp=XXX&plocation=XXX&hashrate=XXX&maxTemp=XXX&comments=XXX&comments=XXX&id=2&update=Update' --compressed
+
+
+###### 6-18-18 ########
+sudo tcpdump port http -l -A | egrep -i 'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user ' --line-buffered -B20
+
+curl for logging in :
+curl 'https://zoomhash.us/login.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: https://zoomhash.us' -H 'Upgrade-Insecure-Requests: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: https://zoomhash.us/login.php' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' -H 'Cookie: PHPSESSID=i5qf9rluu1652ccqc4j2kqatv4' --data 'username=root&password=poopoo11' --compressed
+
+curl for index from logged in account:
+curl 'https://zoomhash.us/index.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: https://zoomhash.us/login.php' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' -H 'Cookie: PHPSESSID=i5qf9rluu1652ccqc4j2kqatv4' --compressed
+
+curl for updating entry:
+curl 'https://zoomhash.us/edit.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: https://zoomhash.us' -H 'Upgrade-Insecure-Requests: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: https://zoomhash.us/edit.php?id=612' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' -H 'Cookie: PHPSESSID=i5qf9rluu1652ccqc4j2kqatv4' --data 'minerIp=10.1.1.1&macAddress=aa%3Abb%3Acc%3Add%3Aee%3Aff&minerType=Antminer_L3%2B%2B&plocation=1-1-1-1&hashrate=100.10&maxTemp=99&farmName=Quincy-Columbia&numCards=3&uptime=24&poolUser=Miner.BTC&comments=noCommentForYou%21&id=612&update=Update' --compressed
+
+curl for adding miner: with $vars
+curl 'https://zoomhash.us/add.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: https://zoomhash.us' -H 'Upgrade-Insecure-Requests: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: https://zoomhash.us/add.php' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' -H 'Cookie: PHPSESSID=i5qf9rluu1652ccqc4j2kqatv4' --data 'minerIp=%24ip&macAddress=%24mac&minerType=%24type&plocation=%24ploc&hashrate=%24hashrate&maxTemp=%24maxTemp&farmName=%24farm&numCards=%24numBoards&uptime=%24uptime&poolUser=%24poolUser&comments=%24comments&Submit=Add' --compressed
+
+curl for adding miner with 1 for var:
+curl 'https://zoomhash.us/add.php' -H 'Connection: keep-alive' -H 'Cache-Control: max-age=0' -H 'Origin: https://zoomhash.us' -H 'Upgrade-Insecure-Requests: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: https://zoomhash.us/add.php' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,es-419;q=0.8,es;q=0.7,ru;q=0.6' -H 'Cookie: PHPSESSID=i5qf9rluu1652ccqc4j2kqatv4' --data 'minerIp=1&macAddress=1&minerType=1&plocation=1&hashrate=1&maxTemp=1&farmName=1&numCards=1&uptime=1&poolUser=1&comments=1&Submit=Add' --compressed
+
